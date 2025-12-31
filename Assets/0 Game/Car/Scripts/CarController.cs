@@ -8,7 +8,7 @@ namespace Game.Car
     using LevelManagement;
     using UnityEngine;
 
-    public class CarController : MonoBehaviour, IRacer
+    public class CarController : MonoBehaviour, IRacer, ICarController
     {
         [SerializeField] private CarDataList _carDataList;
         [SerializeField] private SpriteRenderer _carSpriteRenderer;
@@ -28,7 +28,7 @@ namespace Game.Car
         public IMapProvider MapProvider => _mapProvider;
         public bool IsAIControlled => _isAIControlled;
         public bool CanRace => _canRace;
-
+        public IRacer Racer => this;
         private void Initialize()
         {
             OnInit();

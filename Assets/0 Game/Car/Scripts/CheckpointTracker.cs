@@ -75,7 +75,7 @@ namespace Game.Car
                 
                 Observer.Notify(new LapCompletionEvent
                 {
-                    Racer = _controller,
+                    Racer = _controller.Racer,
                     CompletedLap = _currentLap
                 });
 

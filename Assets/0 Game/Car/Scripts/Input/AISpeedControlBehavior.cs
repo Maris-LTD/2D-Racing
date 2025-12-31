@@ -5,7 +5,7 @@ namespace Game.Car.Input
 {
     public class AISpeedControlBehavior : IAIBehaviorComponent
     {
-        private CarController _carController;
+        private ICarController _carController;
         private IAIPathDataProvider _pathDataProvider;
         private Transform _cachedTransform;
         private Rigidbody _cachedRigidbody;
@@ -29,7 +29,7 @@ namespace Game.Car.Input
         private const float NORMAL_CURVE_SPEED_MULTIPLIER = 0.7f;
         private const float BRAKE_INTENSITY_DIVISOR = 10f;
 
-        public void Initialize(CarController car)
+        public void Initialize(ICarController car)
         {
             _carController = car;
             if (car != null)

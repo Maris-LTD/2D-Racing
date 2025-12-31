@@ -23,7 +23,7 @@ namespace Game.Car.Input
 
     public interface IAIBehaviorComponent
     {
-        void Initialize(CarController car);
+        void Initialize(ICarController car);
         AIBehaviorMetrics Calculate(float deltaTime);
     }
 

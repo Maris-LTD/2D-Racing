@@ -2,12 +2,13 @@ using UnityEngine;
 using Game.Map;
 using System.Collections.Generic;
 using Game;
+using Game.Car;
 
 namespace Game.Car.Input
 {
     public class AICarInputStrategy : ICarInputStrategy
     {
-        private readonly CarController _carController;
+        private readonly ICarController _carController;
         private readonly List<IAIBehaviorComponent> _behaviors;
         private readonly List<IUpdatable> _updatableBehaviors;
 
@@ -20,7 +21,7 @@ namespace Game.Car.Input
         private float _sharpCurveThreshold = 0.35f;
 
 
-        public AICarInputStrategy(CarController carController)
+        public AICarInputStrategy(ICarController carController)
         {
             _carController = carController;
             _behaviors = new List<IAIBehaviorComponent>();

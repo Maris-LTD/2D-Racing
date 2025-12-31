@@ -2,9 +2,9 @@ namespace Game.Car
 {
     public abstract class CarModule : ICarModule
     {
-        protected CarController _controller;
+        protected ICarController _controller;
 
-        public void SetController(CarController controller)
+        public void SetController(ICarController controller)
         {
             _controller = controller;
         }

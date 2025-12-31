@@ -7,7 +7,7 @@ namespace Game.Car.Input
 {
     public class AIPathFollowingBehavior : IAIBehaviorComponent, IUpdatable, IAIPathDataProvider
     {
-        private CarController _carController;
+        private ICarController _carController;
         private ITrackData _cachedTrackData;
         
         private float _minLookAheadDistance = 5f;
@@ -40,7 +40,7 @@ namespace Game.Car.Input
         private const float LOOK_AHEAD_STEP_SHARP = 0.005f;
         private const float STEER_ANGLE_DIVISOR = 45f;
 
-        public void Initialize(CarController car)
+        public void Initialize(ICarController car)
         {
             _carController = car;
             if (car?.MapProvider != null)

@@ -5,7 +5,7 @@ namespace Game.Car.Input
 {
     public class AIRecoveryBehavior : IAIBehaviorComponent
     {
-        private CarController _carController;
+        private ICarController _carController;
         private Transform _cachedTransform;
         private Rigidbody _cachedRigidbody;
         
@@ -24,7 +24,7 @@ namespace Game.Car.Input
         
         private float _sqrStuckThreshold;
 
-        public void Initialize(CarController car)
+        public void Initialize(ICarController car)
         {
             _carController = car;
             if (car != null)

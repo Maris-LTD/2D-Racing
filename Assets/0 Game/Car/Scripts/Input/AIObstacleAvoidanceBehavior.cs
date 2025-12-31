@@ -5,7 +5,7 @@ namespace Game.Car.Input
 {
     public class AIObstacleAvoidanceBehavior : IAIBehaviorComponent
     {
-        private CarController _carController;
+        private ICarController _carController;
         
         private float _obstacleDetectionDistance = 2f;
         private float _avoidanceStrength = 0.5f;
@@ -19,7 +19,7 @@ namespace Game.Car.Input
         private AIBehaviorMetrics _cachedMetrics;
         private AIBehaviorMetrics _zeroMetrics;
 
-        public void Initialize(CarController car)
+        public void Initialize(ICarController car)
         {
             _carController = car;
             _obstacleLayerMask = Physics.DefaultRaycastLayers;
