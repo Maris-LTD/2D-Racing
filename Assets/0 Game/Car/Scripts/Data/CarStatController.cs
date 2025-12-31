@@ -8,9 +8,27 @@ namespace Game.Car.Data
         
         public override void OnCarInit()
         {
+            if (_controller == null || _controller.CarDataList == null || 
+                _controller.CarDataList.carDataList == null)
+            {
+                return;
+            }
+
             _currentCarIndex = _controller.CurrentCarIndex;
-            _speed = _controller.CarDataList.carDataList[_currentCarIndex].maxSpeed;
-            _acceleration = _controller.CarDataList.carDataList[_currentCarIndex].acceleration;
+            
+            if (_currentCarIndex < 0 || _currentCarIndex >= _controller.CarDataList.carDataList.Count)
+            {
+                return;
+            }
+
+            var carData = _controller.CarDataList.carDataList[_currentCarIndex];
+            if (carData == null)
+            {
+                return;
+            }
+
+            _speed = carData.maxSpeed;
+            _acceleration = carData.acceleration;
         }
 
         public float GetSpeed(){

@@ -36,7 +36,13 @@ namespace Game.Car
 
         private void OnInit()
         {
-            CurrentCarIndex = IsAIControlled ? Random.Range(0, CarDataList.carDataList.Count) : 0;
+            if (_carDataList == null || _carDataList.carDataList == null || _carDataList.carDataList.Count == 0)
+            {
+                Debug.LogError("CarDataList is null or empty!");
+                return;
+            }
+
+            CurrentCarIndex = IsAIControlled ? Random.Range(0, _carDataList.carDataList.Count) : 0;
 
             var inputModule = new CarInputModule();
             var statController = new Data.CarStatController();
@@ -79,17 +85,33 @@ namespace Game.Car
 
         private void Update()
         {
+            if (_updatableModules == null)
+            {
+                return;
+            }
+
             foreach (var updatable in _updatableModules)
             {
-                updatable.OnUpdate(Time.deltaTime);
+                if (updatable != null)
+                {
+                    updatable.OnUpdate(Time.deltaTime);
+                }
             }
         }
 
         private void FixedUpdate()
         {
+            if (_fixedUpdatableModules == null)
+            {
+                return;
+            }
+
             foreach (var fixedUpdatable in _fixedUpdatableModules)
             {
-                fixedUpdatable.OnFixedUpdate(Time.fixedDeltaTime);
+                if (fixedUpdatable != null)
+                {
+                    fixedUpdatable.OnFixedUpdate(Time.fixedDeltaTime);
+                }
             }
         }
 
@@ -123,9 +145,17 @@ namespace Game.Car
 
         public void OnTriggerEnter(Collider other)
         {
+            if (other == null || _triggerEnterModules == null)
+            {
+                return;
+            }
+
             foreach (var triggerEnterModule in _triggerEnterModules)
             {
-                triggerEnterModule.OnTriggerEnter(other);
+                if (triggerEnterModule != null)
+                {
+                    triggerEnterModule.OnTriggerEnter(other);
+                }
             }
         }
 

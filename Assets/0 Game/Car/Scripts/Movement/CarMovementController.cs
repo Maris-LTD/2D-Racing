@@ -19,21 +19,32 @@ namespace Game.Car.Movement
 
         public override void OnCarInit()
         {
-            _rb = _controller.GetComponent<Rigidbody>();
+            if (_controller == null)
+            {
+                return;
+            }
 
-            Observer.AddObserver<CarInputData>(OnInputReceived);
+            _rb = _controller.CarRigidbody;
+
+            if (_rb != null)
+            {
+                Observer.AddObserver<CarInputData>(OnInputReceived);
+            }
         }
 
         public override void OnCarDestroy()
         {
-            _rb.linearVelocity = Vector3.zero;
-            _rb.angularVelocity = Vector3.zero;
+            if (_rb != null)
+            {
+                _rb.linearVelocity = Vector3.zero;
+                _rb.angularVelocity = Vector3.zero;
+            }
             Observer.RemoveObserver<CarInputData>(OnInputReceived);
         }
 
         private void OnInputReceived(CarInputData data)
         {
-            if (data.CarId == _controller.GetInstanceID())
+            if (_controller != null && data.CarId == _controller.GetInstanceID())
             {
                 _currentInput = data;
             }

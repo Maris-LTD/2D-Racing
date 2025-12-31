@@ -113,6 +113,12 @@ namespace Game.Car.Input
 
             Transform transform = _carController.transform;
             Rigidbody rb = _carController.CarRigidbody;
+            
+            if (transform == null || rb == null)
+            {
+                return AIBehaviorMetrics.Zero;
+            }
+
             Vector3 position = transform.position;
             Vector3 forward = transform.forward;
             Vector3 right = transform.right;

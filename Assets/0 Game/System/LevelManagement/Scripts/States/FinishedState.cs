@@ -1,7 +1,6 @@
 namespace Game.LevelManagement.States
 {
     using UnityEngine;
-    using System.Linq;
     using Game.GameFlow.Events;
 
     public class FinishedState : LevelStateBase
@@ -15,7 +14,11 @@ namespace Game.LevelManagement.States
                 racer.OnRaceFinished();
             }
 
-            var winner = _controller.Racers.FirstOrDefault();
+            IRacer winner = null;
+            if (_controller.Racers.Count > 0)
+            {
+                winner = _controller.Racers[0];
+            }
             
             Observer.Notify(new LevelCompleteEvent
             {

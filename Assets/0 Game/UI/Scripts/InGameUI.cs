@@ -91,16 +91,17 @@ namespace Game.UI
 
             if (_resultText != null)
             {
-                string resultMessage = $" LEVEL COMPLETE! \n\n";
-                resultMessage += $"Total Laps: {evt.TotalLaps}\n";
-                resultMessage += $"Total Racers: {evt.TotalRacers}\n";
+                System.Text.StringBuilder sb = new System.Text.StringBuilder(128);
+                sb.Append(" LEVEL COMPLETE! \n\n");
+                sb.Append("Total Laps: ").Append(evt.TotalLaps).Append("\n");
+                sb.Append("Total Racers: ").Append(evt.TotalRacers).Append("\n");
                 
                 if (evt.Winner != null)
                 {
-                    resultMessage += $"\n Winner: Racer Completed!";
+                    sb.Append("\n Winner: Racer Completed!");
                 }
 
-                _resultText.text = resultMessage;
+                _resultText.text = sb.ToString();
             }
         }
 
